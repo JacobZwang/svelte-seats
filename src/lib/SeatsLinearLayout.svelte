@@ -6,22 +6,33 @@
 	export let offsetRows: number = 0;
 	export let offsetColumns: number = 0;
 	export let exclude: { x: number; y: number }[] = [];
+	export let reverseRows: boolean = false;
+	export let reverseColumns: boolean = false;
 
-	let _rows = computeArray(rows, alphabeticRows, offsetRows);
-	let _columns = computeArray(columns, alphabeticColumns, offsetColumns);
+	let _rows = computeArray(rows, alphabeticRows, offsetRows, reverseRows);
+	let _columns = computeArray(columns, alphabeticColumns, offsetColumns, reverseColumns);
 
 	function computeArray(
 		descriptor: number | (string | number)[],
 		alphabetic: boolean,
-		offset: number
+		offset: number,
+		reverse: boolean
 	) {
+		let arr = [];
+
 		if (typeof descriptor === 'number') {
-			return new Array(descriptor)
+			arr = new Array(descriptor)
 				.fill(0)
 				.map((x, i) => (alphabetic ? String.fromCharCode(65 + offset + i) : i + offset));
 		} else {
-			return descriptor;
+			arr = descriptor;
 		}
+
+		if (reverse) {
+			arr.reverse();
+		}
+
+		return arr;
 	}
 </script>
 

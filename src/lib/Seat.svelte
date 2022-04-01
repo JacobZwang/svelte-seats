@@ -10,12 +10,13 @@
 
 <style>
 	button {
-		background-color: blue;
+		background-color: rgb(236, 236, 236);
 		border-radius: 4pt;
 		aspect-ratio: 1;
 		padding: 0;
 		text-align: center;
-		font-size: 10px;
+		font-size: 8px;
 		font-weight: bold;
+		border: none;
 	}
 </style>
