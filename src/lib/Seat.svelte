@@ -13,5 +13,9 @@
 		background-color: blue;
 		border-radius: 4pt;
 		aspect-ratio: 1;
+		padding: 0;
+		text-align: center;
+		font-size: 10px;
+		font-weight: bold;
 	}
 </style>

@@ -2,12 +2,11 @@
 	export let rows: number | (string | number)[];
 	export let alphabeticRows: boolean = true;
 	export let alphabeticColumns: boolean = false;
-	export let columns: number;
+	export let columns: number | (string | number)[];
 	export let offsetRows: number = 0;
 	export let offsetColumns: number = 0;
 
 	let _rows = computeArray(rows, alphabeticRows, offsetRows);
-
 	let _columns = computeArray(columns, alphabeticColumns, offsetColumns);
 
 	function computeArray(
@@ -27,8 +26,11 @@
 
 <div
 	class="seats-linear-layout"
-	style:grid-template-rows="repeat({rows}, 1fr)"
-	style:grid-template-columns="repeat({columns}, 1fr)"
+	style:grid-template-rows="repeat({_rows.length}, 1fr)"
+	style:grid-template-columns="repeat({_columns.length}, 1fr)"
+	style:grid-column="span {_columns.length}"
+	style:grid-row="span {_rows.length}"
+	style:aspect-ratio="{_columns.length}/{_rows.length}"
 >
 	{#each _rows as row}
 		{#each _columns as column}
