@@ -5,6 +5,7 @@
 	export let columns: number | (string | number)[];
 	export let offsetRows: number = 0;
 	export let offsetColumns: number = 0;
+	export let exclude: { x: number; y: number }[] = [];
 
 	let _rows = computeArray(rows, alphabeticRows, offsetRows);
 	let _columns = computeArray(columns, alphabeticColumns, offsetColumns);
@@ -32,9 +33,13 @@
 	style:grid-row="span {_rows.length}"
 	style:aspect-ratio="{_columns.length}/{_rows.length}"
 >
-	{#each _rows as row}
-		{#each _columns as column}
-			<slot {column} {row} />
+	{#each _rows as row, y}
+		{#each _columns as column, x}
+			{#if !exclude.find((v) => v.x === x && v.y === y)}
+				<slot {column} {row} />
+			{:else}
+				<div />
+			{/if}
 		{/each}
 	{/each}
 </div>
