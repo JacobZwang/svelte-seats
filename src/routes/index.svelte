@@ -1,5 +1,6 @@
 <script>
-	import Seat from '$lib/Seat.svelte';
+	import LinearLayout from '$lib/LinearLayout.svelte';
+
 	import Seats from '$lib/Seats.svelte';
 	import SeatsLinearLayout from '$lib/SeatsLinearLayout.svelte';
 	import range from '$lib/utils/range';
@@ -8,16 +9,14 @@
 <h1>Svelte Seats</h1>
 
 <Seats>
-	<div>
+	<div class="main-grid">
+		<div />
+		<div />
 		<SeatsLinearLayout
 			columns={Array.from({ length: 3 }, (v, i) => i * 2 + 22)}
 			rows={['PP', 'NN', 'MM', 'LL']}
 			offsetColumns={22}
-			let:row
-			let:column
-		>
-			<Seat title="{row}{column}" />
-		</SeatsLinearLayout>
+		/>
 
 		<div />
 
@@ -26,11 +25,7 @@
 			rows={['PP', 'NN', 'MM', 'LL', 'KK', 'JJ', 'HH', 'GG']}
 			exclude={range(1, 8, 0, 0)}
 			reverseColumns
-			let:row
-			let:column
-		>
-			<Seat title="{row}{column}" />
-		</SeatsLinearLayout>
+		/>
 
 		<div />
 
@@ -39,11 +34,7 @@
 			offsetColumns={101}
 			exclude={range(0, 13, 0, 0)}
 			rows={['PP', 'NN', 'MM', 'LL', 'KK', 'JJ', 'HH', 'GG']}
-			let:row
-			let:column
-		>
-			<Seat title="{row}{column}" />
-		</SeatsLinearLayout>
+		/>
 
 		<div />
 
@@ -51,11 +42,7 @@
 			columns={Array.from({ length: 9 }, (v, i) => i * 2 + 1)}
 			rows={['PP', 'NN', 'MM', 'LL', 'KK', 'JJ', 'HH', 'GG']}
 			exclude={range(0, 7, 0, 0)}
-			let:row
-			let:column
-		>
-			<Seat title="{row}{column}" />
-		</SeatsLinearLayout>
+		/>
 
 		<div />
 
@@ -63,18 +50,44 @@
 			columns={Array.from({ length: 3 }, (v, i) => i * 2 + 21)}
 			rows={['PP', 'NN', 'MM', 'LL']}
 			offsetColumns={22}
-			let:row
-			let:column
-		>
-			<Seat title="{row}{column}" />
-		</SeatsLinearLayout>
+		/>
+	</div>
+
+	<br />
+
+	<div class="main-grid">
+		<SeatsLinearLayout
+			columns={Array.from({ length: 14 }, (v, i) => i * 2 + 2)}
+			reverseColumns
+			rows={['FF', 'EE', 'DD', 'CC', 'BB', 'AA']}
+		/>
+
+		<div />
+		<LinearLayout columns={14} rows={6}>
+			<SeatsLinearLayout
+				columns={14}
+				offsetColumns={100}
+				rows={['FF']}
+				exclude={[
+					{
+						x: 0,
+						y: 0
+					},
+					{
+						x: 13,
+						y: 0
+					}
+				]}
+			/>
+			<SeatsLinearLayout columns={14} offsetColumns={101} rows={['EE', 'DD', 'CC', 'BB', 'AA']} />
+		</LinearLayout>
 	</div>
 </Seats>
 
 <style>
-	div {
+	.main-grid {
 		display: grid;
-		grid-template-columns: repeat(41, 1fr);
+		grid-template-columns: repeat(45, 1fr);
 		grid-auto-rows: auto;
 	}
 </style>

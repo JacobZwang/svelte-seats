@@ -1,4 +1,7 @@
 <script lang="ts">
+	import LinearLayout from './LinearLayout.svelte';
+	import Seat from './Seat.svelte';
+
 	export let rows: number | (string | number)[];
 	export let alphabeticRows: boolean = true;
 	export let alphabeticColumns: boolean = false;
@@ -36,27 +39,16 @@
 	}
 </script>
 
-<div
-	class="seats-linear-layout"
-	style:grid-template-rows="repeat({_rows.length}, 1fr)"
-	style:grid-template-columns="repeat({_columns.length}, 1fr)"
-	style:grid-column="span {_columns.length}"
-	style:grid-row="span {_rows.length}"
-	style:aspect-ratio="{_columns.length}/{_rows.length}"
->
+<LinearLayout columns={_columns.length} rows={_rows.length}>
 	{#each _rows as row, y}
 		{#each _columns as column, x}
 			{#if !exclude.find((v) => v.x === x && v.y === y)}
-				<slot {column} {row} />
+				<slot {column} {row}>
+					<Seat title="{row}{column}" />
+				</slot>
 			{:else}
 				<div />
 			{/if}
 		{/each}
 	{/each}
-</div>
-
-<style>
-	.seats-linear-layout {
-		display: grid;
-	}
-</style>
+</LinearLayout>
