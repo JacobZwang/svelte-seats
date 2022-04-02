@@ -47,7 +47,7 @@
 
 <style>
 	button {
-		background-color: rgb(236, 236, 236);
+		background-color: rgb(236, 236, 236, 0.8);
 		border-radius: 4pt;
 		aspect-ratio: 1;
 		padding: 0;
@@ -58,6 +58,7 @@
 		transition: background-color;
 		transition-duration: 200ms;
 		cursor: pointer;
+		border: 1px solid rgb(201, 201, 201);
 	}
 
 	button:hover {
@@ -73,7 +74,7 @@
 	}
 
 	button.selected {
-		background-color: blue;
+		background-color: rgb(58, 104, 255);
 	}
 
 	span {
