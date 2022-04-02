@@ -81,6 +81,23 @@
 			/>
 			<SeatsLinearLayout columns={14} offsetColumns={101} rows={['EE', 'DD', 'CC', 'BB', 'AA']} />
 		</LinearLayout>
+		<div />
+		<LinearLayout columns={14} rows={6}>
+			<SeatsLinearLayout
+				columns={11}
+				offsetColumns={1}
+				rows={['FF']}
+				incrementColums={2}
+				style="transform: translateX(14%);"
+			/>
+
+			<SeatsLinearLayout
+				offsetColumns={1}
+				columns={14}
+				rows={['EE', 'DD', 'CC', 'BB', 'AA']}
+				incrementColums={2}
+			/>
+		</LinearLayout>
 	</div>
 </Seats>
 

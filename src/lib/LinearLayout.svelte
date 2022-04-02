@@ -1,9 +1,12 @@
 <script lang="ts">
 	export let rows: number;
 	export let columns: number;
+
+	export let style: string = '';
 </script>
 
 <div
+	{style}
 	class="seats-linear-layout"
 	style:grid-template-rows="repeat({rows}, 1fr)"
 	style:grid-template-columns="repeat({columns}, 1fr)"
