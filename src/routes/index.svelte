@@ -104,7 +104,7 @@
 <style>
 	.main-grid {
 		display: grid;
-		grid-template-columns: repeat(45, 1fr);
+		grid-template-columns: repeat(44, 1fr);
 		grid-auto-rows: auto;
 	}
 </style>

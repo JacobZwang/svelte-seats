@@ -57,7 +57,7 @@
 		{#each _columns as column, x}
 			{#if !exclude.find((v) => v.x === x && v.y === y)}
 				<slot {column} {row}>
-					<Seat title="{row}{column}" />
+					<Seat title={column} />
 				</slot>
 			{:else}
 				<div />

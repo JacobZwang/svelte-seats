@@ -18,5 +18,12 @@
 		font-size: 8px;
 		font-weight: bold;
 		border: none;
+		transition: background-color;
+		transition-duration: 200ms;
+		cursor: pointer;
+	}
+
+	button:hover {
+		background-color: rgb(208, 233, 255);
 	}
 </style>
