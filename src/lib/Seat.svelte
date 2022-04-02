@@ -12,8 +12,6 @@
 
 	$: isSelected = $selected.includes(ids);
 	$: isTaken = $taken.some((seat) => arraysEqual(seat, ids));
-
-	console.log($taken, ids);
 </script>
 
 <span
@@ -30,10 +28,12 @@
 		$hovering = [];
 	}}
 	on:click={() => {
-		$selected = [...$selected, ids];
+		if (!isTaken) {
+			$selected = [...$selected, ids];
+		}
 	}}
 >
-	<slot {isSelected}>
+	<slot {isSelected} {isTaken}>
 		<button class:selected={isSelected} class:taken={isTaken}>
 			{title}
 		</button>
@@ -59,12 +59,16 @@
 		background-color: rgb(208, 233, 255);
 	}
 
-	button.selected {
-		background-color: blue;
-	}
-
 	button.taken {
 		background-color: rgb(121, 121, 121);
+	}
+
+	button.taken:hover {
+		cursor: default;
+	}
+
+	button.selected {
+		background-color: blue;
 	}
 
 	span {
