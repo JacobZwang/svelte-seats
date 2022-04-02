@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import Seats from './Seats.svelte';
 	import arraysEqual from './utils/arraysEqual';
 
 	export let title: string;
@@ -10,7 +11,7 @@
 	let selected = getContext<Writable<string[][]>>('selected');
 	let taken = getContext<Writable<string[][]>>('taken');
 
-	$: isSelected = $selected.includes(ids);
+	$: isSelected = $selected.some((seat) => arraysEqual(seat, ids));
 	$: isTaken = $taken.some((seat) => arraysEqual(seat, ids));
 </script>
 
@@ -29,7 +30,11 @@
 	}}
 	on:click={() => {
 		if (!isTaken) {
-			$selected = [...$selected, ids];
+			if (!isSelected) {
+				$selected = [...$selected, ids];
+			} else {
+				$selected = $selected.filter((seat) => !arraysEqual(seat, ids));
+			}
 		}
 	}}
 >
