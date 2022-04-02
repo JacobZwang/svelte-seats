@@ -1,14 +1,25 @@
-<script>
-	import LinearLayout from '$lib/LinearLayout.svelte';
+<script context="module" lang="ts">
+	export const load: import('./index').Load = async ({ fetch }) => {
+		return {
+			props: {
+				taken: await fetch('/taken.json').then((res) => res.json())
+			}
+		};
+	};
+</script>
 
+<script lang="ts">
+	import LinearLayout from '$lib/LinearLayout.svelte';
 	import Seats from '$lib/Seats.svelte';
 	import SeatsLinearLayout from '$lib/SeatsLinearLayout.svelte';
 	import range from '$lib/utils/range';
+
+	export let taken: (string | number)[][];
 </script>
 
 <h1>Svelte Seats</h1>
 
-<Seats let:hovering>
+<Seats let:hovering {taken}>
 	<div class="hovering">
 		{hovering[0] ?? ''}
 		{hovering[1] ?? ''}

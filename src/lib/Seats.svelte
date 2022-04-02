@@ -2,9 +2,18 @@
 	import { setContext } from 'svelte';
 	import { writable } from 'svelte/store';
 
-	let hovering = writable([]);
+	export let taken: (string | number)[][] = [];
+	export let selected: (string | number)[][] = [];
 
-	setContext('hovering', hovering);
+	let _hovering = writable([]);
+	let _selected = writable(selected);
+	let _taken = writable(taken);
+
+	setContext('hovering', _hovering);
+	setContext('selected', _selected);
+	setContext('taken', _taken);
+
+	$: console.log(JSON.stringify($_selected));
 </script>
 
-<slot hovering={$hovering} />
+<slot hovering={$_hovering} />
