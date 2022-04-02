@@ -8,7 +8,12 @@
 
 <h1>Svelte Seats</h1>
 
-<Seats>
+<Seats let:hovering>
+	<div class="hovering">
+		{hovering[0] ?? ''}
+		{hovering[1] ?? ''}
+	</div>
+
 	<div class="main-grid">
 		<div />
 		<div />
@@ -81,7 +86,9 @@
 			/>
 			<SeatsLinearLayout columns={14} offsetColumns={101} rows={['EE', 'DD', 'CC', 'BB', 'AA']} />
 		</LinearLayout>
+
 		<div />
+
 		<LinearLayout columns={14} rows={6}>
 			<SeatsLinearLayout
 				columns={11}
@@ -102,9 +109,18 @@
 </Seats>
 
 <style>
+	h1 {
+		text-align: center;
+	}
+
 	.main-grid {
 		display: grid;
 		grid-template-columns: repeat(44, 1fr);
 		grid-auto-rows: auto;
+	}
+
+	.hovering {
+		height: 20px;
+		text-align: center;
 	}
 </style>

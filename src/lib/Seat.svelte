@@ -1,12 +1,33 @@
 <script lang="ts">
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+
 	export let title: string;
+	export let ids: string[];
+
+	let hovering = getContext<Writable<string[]>>('hovering');
 </script>
 
-<slot>
-	<button>
-		{title}
-	</button>
-</slot>
+<span
+	on:mouseover={() => {
+		$hovering = ids;
+	}}
+	on:focus={() => {
+		$hovering = ids;
+	}}
+	on:mouseout={() => {
+		$hovering = [];
+	}}
+	on:blur={() => {
+		$hovering = [];
+	}}
+>
+	<slot>
+		<button>
+			{title}
+		</button>
+	</slot>
+</span>
 
 <style>
 	button {
@@ -25,5 +46,9 @@
 
 	button:hover {
 		background-color: rgb(208, 233, 255);
+	}
+
+	span {
+		display: contents;
 	}
 </style>
