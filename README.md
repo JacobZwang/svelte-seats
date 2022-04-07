@@ -1,40 +1,58 @@
-# create-svelte
+# Svelte Seats
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+> Not ready for public use! Api is likely to change and documentation is slim.
 
-## Creating a project
+library for creating seating layouts in Sveltejs
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
+```svelte
+<div class="grid grid-cols-2 gap-x-8">
+    <SeatsLinearLayout columns={10} rows={10} alphabeticRows reverseColumns />
+    <SeatsLinearLayout columns={10} rows={10} alphabeticRows reverseColumns offsetColumns={10} />
+</div>
 ```
 
-> Note: the `@next` is temporary
+## Layout Types
 
-## Developing
+### Linear Layout
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```svelte
+// generate from count
+<SeatsLinearLayout columns={10} rows={10} />
 
-```bash
-npm run dev
+// generate from array
+<SeatsLinearLayout columns={['PP', 'NN', 'MM', 'LL']} ... />
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+// offset columns and row numbers
+<SeatsLinearLayout columns={10} offsetColumns={100} ... />
+
+// exclude specific seats
+<SeatsLinearLayout columns={10} exclude={[{x: 0, y: 0}]} ... />
+
+// increment rows or column numbers by larger than 1 ex: 1, 3, 5
+<SeatsLinearLayout columns={10} incrementColums={2} ... />
+
+// make rows and/or columns alphabetic
+<SeatsLinearLayout columns={10} alphabeticColumns ... />
+
+// reverse columns
+<SeatsLinearLayout columns={10} reverseColumns ... />
 ```
 
-## Building
+## Layouts (Coming Soon)
 
-To create a production version of your app:
+### Arc Layout
 
-```bash
-npm run build
-```
+Will work similar to grid but allow arced layouts. Maybe it should be a parameter on the SeatsLinearLayout? (This may be a bad idea because the arc component may be much heavier weight.)
 
-You can preview the production build with `npm run preview`.
+### XY Layout
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Will allow for placing seats using an array of xy coordinates and rotations.
+
+## Integration Options
+
+- use svelte package in your existing svelte project
+- compile svelte component as web component for your existing project
+
+## Integration Options (Coming Soon)
+
+- web component library for creating layouts outside of svelte
