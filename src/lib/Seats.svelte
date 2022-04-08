@@ -12,8 +12,6 @@
 	setContext('hovering', _hovering);
 	setContext('selected', _selected);
 	setContext('taken', _taken);
-
-	$: console.log(JSON.stringify($_selected));
 </script>
 
 <slot hovering={$_hovering} />
