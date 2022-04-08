@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
-	import Seats from './Seats.svelte';
 	import arraysEqual from './utils/arraysEqual';
 
 	export let title: string;
@@ -47,7 +46,7 @@
 
 <style>
 	button {
-		background-color: rgb(236, 236, 236, 0.8);
+		background-color: rgba(236, 236, 236, 0);
 		border-radius: 4pt;
 		aspect-ratio: 1;
 		padding: 0;
