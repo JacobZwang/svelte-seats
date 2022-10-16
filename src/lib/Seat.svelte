@@ -58,6 +58,8 @@
 		transition-duration: 200ms;
 		cursor: pointer;
 		border: 1px solid rgb(201, 201, 201);
+		touch-action: manipulation;
+		overscroll-behavior: contain;
 	}
 
 	button:hover {

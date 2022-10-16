@@ -9,6 +9,10 @@
 	let _selected = writable(selected);
 	let _taken = writable(taken);
 
+	$: {
+		selected = $_selected;
+	}
+
 	setContext('hovering', _hovering);
 	setContext('selected', _selected);
 	setContext('taken', _taken);
